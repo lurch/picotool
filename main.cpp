@@ -458,10 +458,10 @@ std::basic_string<T> uppercase(const std::basic_string<T>& s)
 clipp::formatting_ostream<std::ostream> fos(std::cout);
 
 static void sleep_ms(int ms) {
-#ifdef __unix__
+#if defined(__unix__) || defined(__APPLE__)
     timespec tspec;
     tspec.tv_sec = ms / 1000;
-    tspec.tv_nsec = (ms % 1000) * 1000000ull;
+    tspec.tv_nsec = (ms % 1000) * 1000000ll;
     nanosleep( &tspec, nullptr);
 #else
     Sleep(ms);
