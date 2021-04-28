@@ -1236,7 +1236,6 @@ void build_rmap_uf2(FILE *file, range_map<size_t>& rmap) {
             block.magic_end == UF2_MAGIC_END) {
             if (block.flags & UF2_FLAG_FAMILY_ID_PRESENT && block.file_size == RP2040_FAMILY_ID &&
                 !(block.flags & UF2_FLAG_NOT_MAIN_FLASH) && block.payload_size == PAGE_SIZE) {
-                printf("%08x\n", block.target_addr);
                 rmap.insert(range(block.target_addr, block.target_addr + PAGE_SIZE), pos + offsetof(uf2_block, data[0]));
             }
         }
